@@ -12,10 +12,20 @@ function simpanData() {
   localStorage.setItem("TASKS_DATA", JSON.stringify(tasks));
 }
 
+let currentFilter = "semua";
+const filter = document.querySelector(".filter");
+
 function renderTask() {
   taskList.innerHTML = "";
 
-  tasks.forEach(function (e) {
+  let taskTampil = tasks;
+  if (currentFilter === "aktif") {
+    taskTampil = tasks.filter((task) => !task.completed);
+  } else if (currentFilter === "selesai") {
+    taskTampil = tasks.filter((task) => task.completed);
+  }
+
+  taskTampil.forEach(function (e) {
     taskList.innerHTML += `
       <li class="task-item" data-id="${e.id}">
         <div class="wrapperContent">
@@ -48,6 +58,17 @@ function renderTask() {
     totalTugas.textContent = tasks.length;
   }
 }
+
+filter.addEventListener("click", function (e) {
+  const btnTarget = e.target.closest("button");
+  if (!btnTarget) return;
+
+  filter.querySelector("button.on")?.classList.remove("on");
+  btnTarget.classList.add("on");
+
+  currentFilter = btnTarget.dataset.filter;
+  renderTask();
+});
 
 renderTask();
 
@@ -99,3 +120,4 @@ taskList.addEventListener("click", function (e) {
     }
   }
 });
+
