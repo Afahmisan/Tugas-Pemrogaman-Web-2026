@@ -22,5 +22,4 @@ Fungsi menerima 3 parameter :
 - <code>a</code> sebagai input angka pertama
 - <code>b</code> sebagai input angka kedua
 - <code>operator</code> sebagai input operator apa yang ingin dipakai
-
 Fungsi juga melakukan handler error secara sederhana ketika pembagian dengan angka 0 dan operator yang tidak valid.
