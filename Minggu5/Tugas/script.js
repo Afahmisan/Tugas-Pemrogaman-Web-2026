@@ -50,3 +50,52 @@ function renderTask() {
 }
 
 renderTask();
+
+btnTambah.addEventListener("click", function () {
+  if (!inputJudul.value.trim()) return alert("Judul tidak boleh kosong!");
+  if (!inputJenis.value.trim())
+    return alert("Jenis Kegiatan tidak boleh kosong!");
+
+  const newObj = {
+    id: Date.now(),
+    title: inputJudul.value.trim(),
+    category: inputJenis.value.trim(),
+    deadline: inputDate.value,
+    completed: false,
+  };
+
+  tasks.push(newObj);
+  inputJudul.value = "";
+  inputJenis.value = "";
+  inputDate.value = "";
+
+  simpanData();
+  renderTask();
+});
+
+taskList.addEventListener("click", function (e) {
+  const btnHapus = e.target.closest(".btn-delete");
+  const checkbox = e.target.closest(".task-checkbox");
+
+  if (btnHapus) {
+    const li = btnHapus.closest(".task-item");
+    const idTarget = Number(li.dataset.id);
+
+    tasks = tasks.filter((task) => task.id !== idTarget);
+    simpanData();
+    renderTask();
+    return;
+  }
+
+  if (checkbox) {
+    const li = checkbox.closest(".task-item");
+    const idTarget = Number(li.dataset.id);
+
+    const targetTask = tasks.find((task) => task.id === idTarget);
+    if (targetTask) {
+      targetTask.completed = checkbox.checked;
+      simpanData();
+      renderTask();
+    }
+  }
+});
