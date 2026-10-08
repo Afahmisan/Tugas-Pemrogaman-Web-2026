@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Tracker Tugas Kuliah</h1>
+      <div class="Input">
+        <input type="text" placeholder="Judul" class="judulKegiatan" />
+        <input type="text" placeholder="Matkul" class="jenisKegiatan" />
+        <input type="date" class="date" />
+        <button type="Submit" id="tambah"><span>+</span> Tambah</button>
+      </div>
+      <div class="filter">
+        <button data-filter="semua" class="on">Semua</button>
+        <button data-filter="aktif">Aktif</button>
+        <button data-filter="selesai">Selesai</button>
+      </div>
+
+      <ul id="taskList">
+        
+      </ul>
+
+      <p id="totalTugasContainer">Total Tugas: <span id="totalTugas">-</span></p>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
